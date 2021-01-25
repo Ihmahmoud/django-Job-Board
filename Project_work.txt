@@ -1,0 +1,13 @@
+- fronted template 
+- virtualenv :
+    - create
+    - activate [windowds : source ./scripts]
+    - pip install
+    - deactivate 
+
+- upload project on github
+
+- url : path
+- view : logic
+- models : db 
+- templates : frontend
