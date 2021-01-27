@@ -23,10 +23,15 @@ class Job(models.Model): #table
     published_at = models.DateTimeField(auto_now=True);#publish_at
     Vacancy = models.IntegerField(default=1);#Vacancy
     salary = models.IntegerField(default=0);#salary
-    #category
     experience = models.IntegerField(default=1);#experience
-    
+    category = models.ForeignKey('Category', on_delete=models.CASCADE);#category
     
     def __str__(self):
         return self.title;
     
+    
+class Category(models.Model):
+    name =  models.CharField(max_length=25);
+    
+    def __str__(self):
+        return self.name
