@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Job
 from django.core.paginator import Paginator
+from .form import ApplyForm
 
 # Create your views here.
 def job_list(request):
@@ -19,7 +20,18 @@ def job_list(request):
 def job_detail(request , slug):
     #pass
     job_detail = Job.objects.get(slug=slug);
-    context = {'job' : job_detail}
+    
+    if request.method=='POST':
+        form = ApplyForm(request.POST , request.FILES)
+        if form.is_valid():
+            myform = form.save(commit=False)
+            myform.job = job_detail 
+            myform.save()
+    else:
+        form  = ApplyForm()
+    
+    
+    context = {'job' : job_detail , 'form1':form}
     return render(request,'job/job_detail.html',context)
 
 
